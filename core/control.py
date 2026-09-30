@@ -1,11 +1,14 @@
- import asyncio
+import asyncio
 import contextlib
 
 from evdev import InputDevice, ecodes, list_devices
 
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from core.go2_connection import create_connection  # noqa: E402
 from unitree_webrtc_connect import (
-    UnitreeWebRTCConnection,
-    WebRTCConnectionMethod,
     RTC_TOPIC,
     SPORT_CMD,
     SPORT_CMD_MCF,
@@ -1535,9 +1538,7 @@ async def main():
         )
         print()
 
-        conn = UnitreeWebRTCConnection(
-            WebRTCConnectionMethod.LocalAP
-        )
+        conn = create_connection()
 
         await conn.connect()
 

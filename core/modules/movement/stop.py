@@ -5,10 +5,12 @@ API ID observado na sua instalação: 1003
 Este arquivo é standalone: não depende de common.py.
 """
 import asyncio
+import sys
+from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
+from core.go2_connection import create_connection  # noqa: E402
 from unitree_webrtc_connect import (
-    UnitreeWebRTCConnection,
-    WebRTCConnectionMethod,
     RTC_TOPIC,
     SPORT_CMD,
 )
@@ -17,7 +19,7 @@ COMMAND = 'StopMove'
 API_ID_EXPECTED = 1003
 
 async def main():
-    conn = UnitreeWebRTCConnection(WebRTCConnectionMethod.LocalAP)
+    conn = create_connection()
     try:
         print("Conectando ao Go2...")
         await conn.connect()

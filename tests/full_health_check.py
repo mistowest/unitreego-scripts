@@ -2,9 +2,12 @@ import asyncio
 import time
 from collections import defaultdict
 
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from core.go2_connection import create_connection  # noqa: E402
 from unitree_webrtc_connect import (
-    UnitreeWebRTCConnection,
-    WebRTCConnectionMethod,
     RTC_TOPIC,
 )
 
@@ -743,9 +746,7 @@ async def main():
     monitor = Monitor()
     alerts = []
 
-    conn = UnitreeWebRTCConnection(
-        WebRTCConnectionMethod.LocalAP
-    )
+    conn = create_connection()
 
     subscribed = []
 

@@ -7,9 +7,6 @@ Este arquivo é standalone: não depende de common.py.
 import asyncio
 
 from unitree_webrtc_connect import (
-    UnitreeWebRTCConnection,
-    WebRTCConnectionMethod,
-    RTC_TOPIC,
     SPORT_CMD_MCF,
 )
 
